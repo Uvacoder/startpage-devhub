@@ -2,8 +2,8 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store';
-import { addLink, linkType } from './linksActions';
-import { selectLinks } from './linksReducer';
+import { addLink } from './linksActions';
+import { selectLinks, linkType } from './linksReducer';
 
 import Button from '../common/Button';
 
@@ -13,7 +13,7 @@ const Links = () => {
   const [animationParent] = useAutoAnimate<HTMLDivElement>();
 
   const handleClick = () =>
-    dispatch(addLink({ link: 'https://youtube.com', text: 'Youtube' }));
+    dispatch(addLink({ link: 'https://youtube.com', text: 'YouTube' }));
 
   return (
     <div ref={animationParent} className="flex flex-wrap items-stretch gap-2">
@@ -28,6 +28,7 @@ const Links = () => {
 export default Links;
 
 const LinkItem = ({ link, iconURL, text }: linkType) => {
+  const iconSize = text ? `20px` : `25px`;
   return (
     <Button>
       <a
@@ -37,7 +38,11 @@ const LinkItem = ({ link, iconURL, text }: linkType) => {
         rel="noreferrer noopener"
       >
         {iconURL ? (
-          <img loading="lazy" className="w-[20px] max-w-[20px]" src={iconURL} />
+          <img
+            loading="lazy"
+            className={`min-w-[${iconSize}] max-w-[${iconSize}]`}
+            src={iconURL}
+          />
         ) : null}
         {text ? <span>{text}</span> : null}
       </a>

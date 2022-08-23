@@ -2,10 +2,16 @@ import { RootState } from '../../store';
 import {
   linkActionType,
   linkObjectActionType,
-  LINKS_ACTIONS,
-  linkType
+  LINKS_ACTIONS
 } from './linksActions';
 import { v4 as uuv4 } from 'uuid';
+
+export type linkType = {
+  id: string;
+  link: string;
+  iconURL: string;
+  text?: string;
+};
 
 const initialState: linkType[] = [
   {

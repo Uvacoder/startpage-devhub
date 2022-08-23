@@ -1,9 +1,3 @@
-export type linkType = {
-  id: string;
-  link: string;
-  iconURL: string;
-  text?: string;
-};
 export type linkActionType<T> = { type: string; payload: T };
 
 export const LINKS_ACTIONS = {
