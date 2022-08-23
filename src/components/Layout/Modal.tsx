@@ -16,13 +16,12 @@ export default function Modal({ children, isOpen, handleClose }: IModal) {
   return (
     <ReactPortal>
       <div
-        className="fixed top-0 left-0 h-screen w-screen 
-        bg-stone-800/80 backdrop-blur-sm"
+        className="fixed top-0 left-0 h-screen w-screen"
         onClick={handleClose}
       >
-        <Layout>
+        <Layout className="max-w-[600px] py-4">
           <div
-            className="h-full px-5 py-2"
+            className="h-full rounded-lg bg-stone-800/80 px-5 py-2 shadow backdrop-blur-sm"
             onClick={(e) => e.stopPropagation()}
           >
             <div
