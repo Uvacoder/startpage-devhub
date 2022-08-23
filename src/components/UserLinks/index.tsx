@@ -44,7 +44,6 @@ const Links = () => {
 export default Links;
 
 const LinkItem = ({ link, iconURL, text }: linkType) => {
-  const iconSize = text ? `20px` : `25px`;
   return (
     <Button>
       <a
@@ -56,7 +55,7 @@ const LinkItem = ({ link, iconURL, text }: linkType) => {
         {iconURL ? (
           <img
             loading="lazy"
-            className={`min-w-[${iconSize}] max-w-[${iconSize}]`}
+            className={`min-w-[20px] max-w-[20px]`}
             src={iconURL}
           />
         ) : null}

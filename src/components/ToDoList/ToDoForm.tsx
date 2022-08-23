@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '../common/Button';
 
@@ -8,6 +8,9 @@ export default function ToDoForm({
   onSubmit: (todo: string) => void;
 }) {
   const [text, setText] = useState('');
+
+  useEffect(() => {}, [text]);
+
   return (
     <>
       <h1 className="text-2xl">Add Todo</h1>
