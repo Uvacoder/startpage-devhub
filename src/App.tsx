@@ -6,7 +6,7 @@ import ArticlesList from './components/ArticlesList';
 
 import useCurrentTime from './hooks/useCurrentTime';
 import { getDate, getTime } from './utils/time';
-import Links from './components/Links';
+import Links from './components/UserLinks';
 import Layout from './components/Layout';
 
 export default function App() {

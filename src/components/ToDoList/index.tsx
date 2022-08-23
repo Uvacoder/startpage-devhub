@@ -37,7 +37,10 @@ const ToDoList = () => {
           </li>
         ))}
       </ul>
-      <Button handleClick={() => dispatch(addTodo('Another todo🐱'))}>
+      <Button
+        className="bg-stone-500"
+        onClick={() => dispatch(addTodo('Another todo🐱'))}
+      >
         Add todo
       </Button>
     </div>

@@ -1,5 +1,5 @@
 import { RootState } from '../../store';
-import { ACTIONS, TodoActionType } from './todoActions';
+import { TODO_ACTIONS, TodoActionType } from './todoActions';
 import { v4 as uuidv4 } from 'uuid';
 
 type todoType = {
@@ -17,7 +17,7 @@ export default function todoReducer(
   action: TodoActionType
 ): todoType[] {
   switch (action.type) {
-    case ACTIONS.ADD_TODO:
+    case TODO_ACTIONS.ADD:
       return [
         ...state,
         {
@@ -26,12 +26,7 @@ export default function todoReducer(
           completed: false
         }
       ];
-    case ACTIONS.COMPLETE_TODO:
-      return state.map((todo) => ({
-        ...todo,
-        completed: todo.id === action.payload ? !todo.completed : todo.completed
-      }));
-    case ACTIONS.REMOVE_TODO:
+    case TODO_ACTIONS.REMOVE:
       return state.filter(({ id }) => id !== action.payload);
     default:
       return state;

@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import todoReducer from '../components/ToDoList/todoReducer';
+import linksReducer from '../components/UserLinks/linksReducer';
 
 const rootReducer = combineReducers({
-  todos: todoReducer
+  todos: todoReducer,
+  links: linksReducer
 });
 
 const store = configureStore({
