@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import useCurrentTime from './hooks/useCurrentTime';
 import { getDate, getTime } from './utils/time';
@@ -36,6 +36,12 @@ const TimeTitle = () => {
 const SearchBar = () => {
   const DUCK_SIZE = 30;
   const SEARCH_SIZE = 20;
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    return (window.location.href = `https://duckduckgo.com/?q=${searchQuery}`);
+  };
+
   return (
     <div className="relative flex">
       <input
@@ -44,6 +50,11 @@ const SearchBar = () => {
         id="searchbar-duckduckgo"
         placeholder="Search on DuckDuckGo..."
         className="h-[50px] w-full rounded bg-[#3e3e3e] px-4 pl-[55px]"
+        value={searchQuery}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearchQuery(e.target.value)
+        }
+        onSubmit={handleSearch}
       />
       <DuckDuckGo
         className="pointer-events-none absolute top-[10px] left-[15px]"
@@ -54,6 +65,7 @@ const SearchBar = () => {
         className="absolute top-[15px] right-[15px] bg-inherit"
         width={SEARCH_SIZE}
         height={SEARCH_SIZE}
+        onClick={handleSearch}
       />
     </div>
   );
