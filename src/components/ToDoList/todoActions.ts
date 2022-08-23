@@ -1,6 +1,7 @@
 export const ACTIONS = {
   ADD_TODO: 'todo/added',
-  REMOVE_TODO: 'todo/removed'
+  REMOVE_TODO: 'todo/removed',
+  COMPLETE_TODO: 'todo/completed'
 };
 
 export type TodoActionType = {
@@ -13,7 +14,12 @@ export const addTodo = (text: string) => ({
   payload: text
 });
 
-export const removeTodo = (text: string) => ({
+export const removeTodo = (id: string) => ({
   type: ACTIONS.REMOVE_TODO,
-  payload: text
+  payload: id
+});
+
+export const completeTodo = (id: string) => ({
+  type: ACTIONS.COMPLETE_TODO,
+  payload: id
 });

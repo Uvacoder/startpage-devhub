@@ -18,11 +18,13 @@ export function getDate(date: Date) {
 }
 
 export function getTime(date: Date) {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
   return (
     <div className="flex items-center">
-      {date.getHours()}
+      {hours < 10 ? `0${hours}` : hours}
       <div className="animate-pulse">:</div>
-      {date.getMinutes()}
+      {minutes < 10 ? `0${minutes}` : minutes}
     </div>
   );
 }
