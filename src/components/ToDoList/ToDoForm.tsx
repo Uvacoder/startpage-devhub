@@ -21,7 +21,9 @@ export default function ToDoForm({
             setText(e.target.value)
           }
         />
-        <Button onClick={() => onSubmit(text)}>Add</Button>
+        <Button className="ml-auto" onClick={() => onSubmit(text)}>
+          Add
+        </Button>
       </form>
     </>
   );
