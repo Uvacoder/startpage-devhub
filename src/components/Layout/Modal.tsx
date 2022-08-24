@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import Layout from './MainLayout';
 
 import { ReactComponent as ExitIcon } from '@assets/cross.svg';
+import { useEffect } from 'react';
 
 interface IModal {
   children: React.ReactNode;
@@ -13,16 +14,20 @@ interface IModal {
 export default function Modal({ children, isOpen, handleClose }: IModal) {
   if (!isOpen) return null;
 
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden');
+    return () => document.body.classList.remove('overflow-hidden');
+  }, []);
+
   return (
     <ReactPortal>
       <div
-        className="fixed top-0 left-0 z-20 h-screen w-screen"
+        className="fixed top-0 left-0 z-20 h-screen w-screen backdrop-blur-sm"
         onClick={handleClose}
       >
         <Layout className="max-w-[600px] px-0 py-0 sm:py-4">
           <div
-            className="h-full rounded-lg border-stone-600 bg-stone-800/80 px-5 py-2 shadow 
-            backdrop-blur-sm sm:border"
+            className="h-full overflow-y-auto rounded-lg border-stone-600 bg-stone-800/80 px-5 py-2 pb-6 shadow sm:border"
             onClick={(e) => e.stopPropagation()}
           >
             <div
