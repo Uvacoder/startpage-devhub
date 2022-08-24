@@ -16,7 +16,8 @@ import rootReducer from './rootReducer';
 const persistedReducer = persistReducer(
   {
     key: 'root',
-    storage
+    storage,
+    blacklist: ['articles']
   },
   rootReducer
 );
