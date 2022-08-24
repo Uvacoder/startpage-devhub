@@ -21,7 +21,7 @@ const ToDoList = () => {
 
   return (
     <div className="flex flex-col flex-wrap gap-2 rounded bg-stone-700 px-4 py-2 pb-4">
-      <h1 className="text-2xl">TODO</h1>
+      <h1 className="text-2xl">Todos</h1>
       <ul ref={animationParent} className="flex flex-col gap-2">
         {todos.length === 0 && <div>Add things to do ...</div>}
         {todos.map((todo) => (
@@ -31,7 +31,11 @@ const ToDoList = () => {
             handleClick={(id: string) => dispatch(removeTodo(id))}
           />
         ))}
-        <Button onClick={() => setShowModal(true)} style="SIMPLE">
+        <Button
+          onClick={() => setShowModal(true)}
+          className="ml-auto"
+          style="SIMPLE"
+        >
           <PlusIcon />
           Add todo
         </Button>

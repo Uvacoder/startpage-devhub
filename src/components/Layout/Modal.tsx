@@ -19,9 +19,10 @@ export default function Modal({ children, isOpen, handleClose }: IModal) {
         className="fixed top-0 left-0 h-screen w-screen"
         onClick={handleClose}
       >
-        <Layout className="max-w-[600px] py-4">
+        <Layout className="max-w-[600px] px-0 py-0 sm:py-4">
           <div
-            className="h-full rounded-lg bg-stone-800/80 px-5 py-2 shadow backdrop-blur-sm"
+            className="h-full rounded-lg border-stone-600 bg-stone-800/80 px-5 py-2 shadow 
+            backdrop-blur-sm sm:border"
             onClick={(e) => e.stopPropagation()}
           >
             <div

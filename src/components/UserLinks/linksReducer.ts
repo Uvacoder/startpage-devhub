@@ -25,7 +25,7 @@ const initialState: linkType[] = [
 
 export default function linksReducer(
   state = initialState,
-  action: linkActionType<linkObjectActionType>
+  action: linkActionType<linkObjectActionType & string>
 ): linkType[] {
   switch (action.type) {
     case LINKS_ACTIONS.ADD:
@@ -39,7 +39,7 @@ export default function linksReducer(
         }
       ];
     case LINKS_ACTIONS.REMOVE:
-      return state.filter((link) => link.id !== action.payload.id);
+      return state.filter((link) => link.id !== action.payload);
     default:
       return state;
   }

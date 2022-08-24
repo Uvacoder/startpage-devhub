@@ -6,8 +6,8 @@ interface IButton {
 }
 
 const STYLES = {
-  DEFAULT: 'rounded bg-stone-600 px-4 py-2 ',
-  SIMPLE: 'py-1'
+  DEFAULT: 'button--default',
+  SIMPLE: 'button--simple'
 };
 
 export default function Button({
@@ -18,7 +18,7 @@ export default function Button({
 }: IButton) {
   return (
     <button
-      className={`flex w-fit items-center justify-center gap-2 ${STYLES[style]} ${className}`}
+      className={`button ${STYLES[style]} ${className}`}
       onClick={(e) => {
         e.preventDefault();
         if (onClick) onClick(e);

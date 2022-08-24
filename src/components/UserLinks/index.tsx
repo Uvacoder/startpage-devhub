@@ -1,25 +1,22 @@
+import { useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@store';
-import { addLink } from './linksActions';
+import { addLink, removeLink } from './linksActions';
 import { selectLinks, linkType } from './linksReducer';
 
 import Button from '../common/Button';
+import Modal from '../Layout/Modal';
+import LinksForm from './LinksForm';
 
 import { ReactComponent as CustomizeIcon } from '@assets/customize.svg';
-import { useState } from 'react';
-import Modal from '../Layout/Modal';
 
 const Links = () => {
   const links = useSelector(selectLinks);
   const dispatch = useDispatch<AppDispatch>();
   const [animationParent] = useAutoAnimate<HTMLDivElement>();
   const [showModal, setShowModal] = useState(false);
-
-  const handleClick = () =>
-    // dispatch(addLink({ link: 'https://youtube.com', text: 'YouTube' }));
-    setShowModal(true);
 
   return (
     <div ref={animationParent} className="flex flex-wrap items-stretch gap-2">
@@ -35,7 +32,13 @@ const Links = () => {
         Customize links
       </Button>
       <Modal handleClose={() => setShowModal(false)} isOpen={showModal}>
-        <h1 className="text-2xl">Customize links</h1>
+        <LinksForm
+          onSubmit={(link) => {
+            dispatch(addLink(link));
+            setShowModal(false);
+          }}
+          onRemoveLink={(id) => dispatch(removeLink(id))}
+        />
       </Modal>
     </div>
   );
@@ -45,22 +48,21 @@ export default Links;
 
 const LinkItem = ({ link, iconURL, text }: linkType) => {
   return (
-    <Button>
-      <a
-        href={link}
-        className="flex items-center gap-1"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        {iconURL ? (
-          <img
-            loading="lazy"
-            className={`min-w-[20px] max-w-[20px]`}
-            src={iconURL}
-          />
-        ) : null}
-        {text ? <span>{text}</span> : null}
-      </a>
-    </Button>
+    <a
+      onClick={(e) => e.stopPropagation()}
+      href={link}
+      className="button button--default"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      {iconURL ? (
+        <img
+          loading="lazy"
+          className={`min-w-[20px] max-w-[20px]`}
+          src={iconURL}
+        />
+      ) : null}
+      {text ? <span>{text}</span> : null}
+    </a>
   );
 };

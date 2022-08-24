@@ -6,3 +6,18 @@ html {
   background-color: #292929;
   color: #fff;
 }
+
+@layer components {
+  .input-text {
+    @apply rounded border border-stone-600 bg-stone-600 px-4 py-2 text-stone-200 outline-none focus:border-stone-400;
+  }
+  .button {
+    @apply flex w-fit cursor-pointer items-center justify-center gap-2;
+  }
+  .button--default {
+    @apply rounded bg-stone-600 px-4 py-2;
+  }
+  .button--simple {
+    @apply py-1;
+  }
+}

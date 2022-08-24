@@ -16,3 +16,8 @@ export const addLink = (
   type: LINKS_ACTIONS.ADD,
   payload: link
 });
+
+export const removeLink = (link: string): linkActionType<string> => ({
+  type: LINKS_ACTIONS.REMOVE,
+  payload: link
+});
