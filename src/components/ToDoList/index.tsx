@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-import { AppDispatch } from '../../store';
+import { AppDispatch } from '@store';
 import { addTodo, removeTodo } from './todoActions';
 import { selectTodos, todoType } from './todoReducer';
 
@@ -10,8 +10,8 @@ import Button from '../common/Button';
 import Modal from '../Layout/Modal';
 import ToDoForm from './ToDoForm';
 
-import { ReactComponent as CheckMarkIcon } from '../../assets/check.svg';
-import { ReactComponent as PlusIcon } from '../../assets/plus.svg';
+import { ReactComponent as CheckMarkIcon } from '@assets/check.svg';
+import { ReactComponent as PlusIcon } from '@assets/plus.svg';
 
 const ToDoList = () => {
   const todos = useSelector(selectTodos);

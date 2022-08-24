@@ -1,14 +1,8 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import todoReducer from '../components/ToDoList/todoReducer';
-import linksReducer from '../components/UserLinks/linksReducer';
-
-import { persistStore, persistReducer } from 'redux-persist';
+import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 
-const rootReducer = combineReducers({
-  todos: todoReducer,
-  links: linksReducer
-});
+import rootReducer from './rootReducer';
 
 const persistedReducer = persistReducer(
   {

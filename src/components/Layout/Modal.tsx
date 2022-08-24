@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 
-import Layout from './';
+import Layout from './MainLayout';
 
-import { ReactComponent as ExitIcon } from '../../assets/cross.svg';
+import { ReactComponent as ExitIcon } from '@assets/cross.svg';
 
 interface IModal {
   children: React.ReactNode;

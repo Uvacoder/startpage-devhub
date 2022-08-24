@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ReactComponent as DuckDuckGo } from '../assets/duckduckgo.svg';
-import { ReactComponent as SearchIcon } from '../assets/search.svg';
+import { ReactComponent as DuckDuckGo } from '@assets/duckduckgo.svg';
+import { ReactComponent as SearchIcon } from '@assets/search.svg';
 
 const SearchBar = () => {
   const DUCK_SIZE = 30;

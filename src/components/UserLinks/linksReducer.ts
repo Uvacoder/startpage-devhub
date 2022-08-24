@@ -1,9 +1,10 @@
-import { RootState } from '../../store';
+import { RootState } from '@store';
 import {
   linkActionType,
   linkObjectActionType,
   LINKS_ACTIONS
 } from './linksActions';
+
 import { v4 as uuv4 } from 'uuid';
 
 export type linkType = {

@@ -1,13 +1,13 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { AppDispatch } from '@store';
 import { addLink } from './linksActions';
 import { selectLinks, linkType } from './linksReducer';
 
 import Button from '../common/Button';
 
-import { ReactComponent as CustomizeIcon } from '../../assets/customize.svg';
+import { ReactComponent as CustomizeIcon } from '@assets/customize.svg';
 import { useState } from 'react';
 import Modal from '../Layout/Modal';
 

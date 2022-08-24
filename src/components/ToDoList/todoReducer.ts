@@ -1,4 +1,4 @@
-import { RootState } from '../../store';
+import { RootState } from '@store';
 import { TODO_ACTIONS, TodoActionType } from './todoActions';
 import { v4 as uuidv4 } from 'uuid';
 

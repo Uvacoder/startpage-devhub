@@ -1,13 +1,11 @@
-import React from 'react';
+import ToDoList from '@components/ToDoList';
+import SearchBar from '@components/SearchBar';
+import ArticlesList from '@components/ArticlesList';
 
-import ToDoList from './components/ToDoList';
-import SearchBar from './components/SearchBar';
-import ArticlesList from './components/ArticlesList';
-
-import useCurrentTime from './hooks/useCurrentTime';
-import { getDate, getTime } from './utils/time';
-import Links from './components/UserLinks';
-import Layout from './components/Layout';
+import useCurrentTime from '@hooks/useCurrentTime';
+import { getDate, getTime } from '@utils/time';
+import Links from '@components/UserLinks';
+import Layout from '@components/Layout/MainLayout';
 
 export default function App() {
   return (
