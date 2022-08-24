@@ -43,7 +43,7 @@ const ArticlesList = () => {
             <div className="text-sm text-stone-300">
               {filterMediumDescription(description)}
             </div>
-            <div className="text-stone-300">{author}</div>
+            <div className="text-stone-200">{author}</div>
           </div>
         </div>
       ))}
