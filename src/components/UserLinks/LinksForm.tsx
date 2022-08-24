@@ -26,10 +26,13 @@ export default function LinksForm({ onSubmit, onRemoveLink }: IProps) {
     <>
       <h1 className="text-2xl">Customize links</h1>
       <ul className="flex flex-col gap-2" ref={animationParent}>
+        <div className="text-stone-300">
+          Add some links for your favourite sites...
+        </div>
         {links.map(({ id, text, link }) => (
           <div
             className="flex items-center gap-1 rounded bg-stone-700 px-4 py-1"
-            id={id}
+            key={id}
           >
             <div>{text && text !== '' ? text : link}</div>
             <div
