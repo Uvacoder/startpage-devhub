@@ -20,4 +20,7 @@ html {
   .button--simple {
     @apply py-1;
   }
+  .badge {
+    @apply w-fit rounded-lg bg-stone-500 px-2;
+  }
 }

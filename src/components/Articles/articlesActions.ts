@@ -13,6 +13,8 @@ export type articleActionType<T> = {
   payload: T;
 };
 
+const MAX_ITEMS_PER_PAGE = 10;
+
 export const fetchArticles = createAsyncThunk<
   articleType[],
   undefined,
@@ -26,10 +28,12 @@ export const fetchArticles = createAsyncThunk<
       `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/tag/${_tag}`
     );
     return _articles.push(
-      ...data.items.map((item: articleType) => ({
-        ...item,
-        category: interest
-      }))
+      ...data.items
+        .slice(0, Math.floor(MAX_ITEMS_PER_PAGE / interests.length))
+        .map((item: articleType) => ({
+          ...item,
+          category: interest
+        }))
     );
   });
   await Promise.all(interestsFetches);

@@ -85,9 +85,7 @@ const Article = ({ link, title, description, category }: articleType) => {
         <div className="text-sm text-stone-300">
           {filterMediumDescription(description)}
         </div>
-        <div className="mt-1 w-fit rounded-lg bg-stone-500 px-2 text-sm ">
-          {category}
-        </div>
+        <div className="badge mt-1 text-sm">{category}</div>
       </div>
     </li>
   );
