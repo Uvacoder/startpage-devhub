@@ -12,13 +12,15 @@ interface IModal {
 }
 
 export default function Modal({ children, isOpen, handleClose }: IModal) {
-  if (!isOpen) return null;
-
   useEffect(() => {
     document.body.classList.add('overflow-hidden');
+    if (!isOpen) {
+      document.body.classList.remove('overflow-hidden');
+    }
     return () => document.body.classList.remove('overflow-hidden');
-  }, []);
+  }, [isOpen]);
 
+  if (!isOpen) return null;
   return (
     <ReactPortal>
       <div
