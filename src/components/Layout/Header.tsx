@@ -4,7 +4,7 @@ import { getDate, getTime } from '@utils/time';
 
 export default function Header() {
   return (
-    <div className="sticky top-0 z-10 flex flex-col gap-2 bg-stone-800 py-4">
+    <div className="sticky top-0 z-10 flex flex-col gap-2 bg-[#292929] py-4">
       <TimeTitle />
       <SearchBar />
     </div>

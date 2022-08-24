@@ -29,15 +29,21 @@ const ArticlesList = () => {
   const [animationParent] = useAutoAnimate<HTMLUListElement>();
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === 'idle' && interests.length > 0) {
       dispatch(fetchArticles());
     }
-  }, []);
+  }, [interests]);
 
   return (
     <div className="flex flex-col gap-4 rounded bg-stone-700 px-4 py-2 pb-4 pr-6">
       <ul className="flex flex-col gap-4" ref={animationParent}>
         {status === 'loading' && <div>Loading ...</div>}
+        {interests.length === 0 && (
+          <div>Choose some categories to get articles...</div>
+        )}
+        {status === 'error' && (
+          <div className="text-red-400">There's been an error😔</div>
+        )}
         {articles.map(({ link, ...rest }) => (
           <Article key={link} {...rest} link={link} />
         ))}
@@ -63,7 +69,7 @@ const ArticlesList = () => {
 
 export default ArticlesList;
 
-const Article = ({ link, title, description, author }: articleType) => {
+const Article = ({ link, title, description, category }: articleType) => {
   return (
     <li className="flex cursor-pointer items-start gap-4">
       <MediumLogo className="mt-[5px] min-w-[25px]" width={25} height={25} />
@@ -79,7 +85,9 @@ const Article = ({ link, title, description, author }: articleType) => {
         <div className="text-sm text-stone-300">
           {filterMediumDescription(description)}
         </div>
-        <div className="text-stone-200">{author}</div>
+        <div className="mt-1 w-fit rounded-lg bg-stone-500 px-2 text-sm ">
+          {category}
+        </div>
       </div>
     </li>
   );

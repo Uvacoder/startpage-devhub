@@ -33,6 +33,7 @@ export default function InterestsForm({ onAdd, onDelete, data }: IProps) {
       <div className="flex flex-wrap gap-4">
         {INTERESTS.map((interest) => (
           <div
+            key={interest}
             className={`flex cursor-pointer items-center gap-2 rounded bg-stone-600 px-4 py-1 transition ${
               checkIfUserInterest(interest) ? ACTIVE_STYLE : ''
             }`}

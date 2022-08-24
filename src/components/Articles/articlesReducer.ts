@@ -7,6 +7,7 @@ export type articleType = {
   link: string;
   author: string;
   description: string;
+  category: string;
 };
 
 type statusTypes = 'idle' | 'loading' | 'success' | 'error';
@@ -36,7 +37,7 @@ export default function articlesReducer(
         data: [...action.payload],
         status: 'success'
       };
-    case `${ARTICLES_ACTIONS.FETCH_BY_TAG}/failed`:
+    case `${ARTICLES_ACTIONS.FETCH_BY_TAG}/rejected`:
       return { ...state, status: 'error', error: action.payload };
     default:
       return state;
