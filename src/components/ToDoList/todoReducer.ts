@@ -6,15 +6,21 @@ export type todoType = {
   id: string;
   text: string;
   completed: boolean;
+  isImportant: boolean;
 };
 
 const initialState: todoType[] = [
-  { id: uuidv4(), text: 'My first todo👋', completed: false }
+  {
+    id: uuidv4(),
+    text: 'My first todo👋',
+    completed: false,
+    isImportant: false
+  }
 ];
 
 export default function todoReducer(
   state = initialState,
-  action: TodoActionType
+  action: TodoActionType<{ text: string; isImportant: boolean } & string>
 ): todoType[] {
   switch (action.type) {
     case TODO_ACTIONS.ADD:
@@ -22,7 +28,8 @@ export default function todoReducer(
         ...state,
         {
           id: uuidv4(),
-          text: action.payload,
+          text: action.payload.text,
+          isImportant: action.payload.isImportant,
           completed: false
         }
       ];

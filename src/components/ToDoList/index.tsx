@@ -61,22 +61,22 @@ const ToDoItem = ({
   handleClick: (id: string) => void;
   todo: todoType;
 }) => {
-  const { id, completed, text } = todo;
+  const { id, completed, text, isImportant } = todo;
   return (
     <li
       className="flex cursor-pointer items-center gap-2 [&_span]:hover:border-stone-400 
-  [&_.remove-btn]:hover:visible"
+      [&_.remove-btn]:hover:visible"
       onClick={() => handleClick(id)}
     >
       <span
-        className={`flex h-4 w-4 rounded-[3px]
-  ${
-    completed ? 'bg-blue-500' : 'bg-stone-500'
-  } transition hover:border-stone-400`}
+        className={`flex h-4 w-4 rounded-[3px] ${
+          completed ? 'bg-blue-500' : 'bg-stone-500'
+        } transition hover:border-stone-400`}
       >
         {completed && <CheckMarkIcon width={16} height={16} />}
       </span>
       <div className="w-fit">{text}</div>
+      {isImportant && <div className="badge bg-slate-500">Important</div>}
     </li>
   );
 };

@@ -3,14 +3,14 @@ export const TODO_ACTIONS = {
   REMOVE: 'todo/removed'
 };
 
-export type TodoActionType = {
+export type TodoActionType<T> = {
   type: string;
-  payload: string;
+  payload: T;
 };
 
-export const addTodo = (text: string) => ({
+export const addTodo = (todo: { text: string; isImportant: boolean }) => ({
   type: TODO_ACTIONS.ADD,
-  payload: text
+  payload: todo
 });
 
 export const removeTodo = (id: string) => ({

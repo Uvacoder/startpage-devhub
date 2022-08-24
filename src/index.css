@@ -21,6 +21,6 @@ html {
     @apply py-1;
   }
   .badge {
-    @apply w-fit rounded-lg bg-stone-500 px-2;
+    @apply w-fit rounded-lg bg-stone-500 px-2 text-sm;
   }
 }
