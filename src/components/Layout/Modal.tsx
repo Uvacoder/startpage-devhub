@@ -16,7 +16,7 @@ export default function Modal({ children, isOpen, handleClose }: IModal) {
   return (
     <ReactPortal>
       <div
-        className="fixed top-0 left-0 h-screen w-screen"
+        className="fixed top-0 left-0 z-20 h-screen w-screen"
         onClick={handleClose}
       >
         <Layout className="max-w-[600px] px-0 py-0 sm:py-4">
