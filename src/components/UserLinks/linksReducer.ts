@@ -17,8 +17,8 @@ export type linkType = {
 const initialState: linkType[] = [
   {
     id: uuv4(),
-    link: 'https://github.com/ilyasudakov',
-    text: 'Github',
+    link: 'https://github.com/ilyasudakov/dev-hub',
+    text: 'Source',
     iconURL: 'https://github.com/favicon.ico'
   }
 ];

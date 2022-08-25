@@ -13,7 +13,17 @@ export default function App() {
         <Links />
         <ToDoList />
         <ArticlesList />
+        <Footer />
       </div>
     </Layout>
+  );
+}
+
+function Footer() {
+  return (
+    <div className="text-center text-sm text-stone-400">
+      <div>© 2022 Илья Судаков.</div>
+      <div>Сделано с React, Redux/Redux-Toolkit, TypeScript, Tailwind.</div>
+    </div>
   );
 }
