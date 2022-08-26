@@ -1,11 +1,8 @@
 import { RootState } from '@store';
-import {
-  linkActionType,
-  linkObjectActionType,
-  LINKS_ACTIONS
-} from './linksActions';
+import { LINKS_ACTIONS } from './linksActions';
 
 import { v4 as uuv4 } from 'uuid';
+import { AnyAction } from '@reduxjs/toolkit';
 
 export type linkType = {
   id: string;
@@ -25,19 +22,20 @@ const initialState: linkType[] = [
 
 export default function linksReducer(
   state = initialState,
-  action: linkActionType<linkObjectActionType & string>
+  action: AnyAction
 ): linkType[] {
   switch (action.type) {
     case LINKS_ACTIONS.ADD:
-      return [
-        ...state,
-        {
-          id: uuv4(),
-          link: action.payload.link,
-          text: action.payload.text,
-          iconURL: `${new URL(action.payload.link).origin}/favicon.ico`
-        }
-      ];
+      if (action.payload)
+        return [
+          ...state,
+          {
+            id: uuv4(),
+            link: action.payload.link,
+            text: action.payload.text,
+            iconURL: `${new URL(action.payload.link).origin}/favicon.ico`
+          }
+        ];
     case LINKS_ACTIONS.REMOVE:
       return state.filter((link) => link.id !== action.payload);
     default:

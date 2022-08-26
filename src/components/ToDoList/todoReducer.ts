@@ -1,6 +1,7 @@
 import { RootState } from '@store';
 import { TODO_ACTIONS, TodoActionType } from './todoActions';
 import { v4 as uuidv4 } from 'uuid';
+import { AnyAction } from '@reduxjs/toolkit';
 
 export type todoType = {
   id: string;
@@ -20,7 +21,7 @@ const initialState: todoType[] = [
 
 export default function todoReducer(
   state = initialState,
-  action: TodoActionType<{ text: string; isImportant: boolean } & string>
+  action: AnyAction
 ): todoType[] {
   switch (action.type) {
     case TODO_ACTIONS.ADD:

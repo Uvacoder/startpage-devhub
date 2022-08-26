@@ -1,5 +1,6 @@
+import { AnyAction } from '@reduxjs/toolkit';
 import { RootState } from '@store';
-import { articleActionType, ARTICLES_ACTIONS } from './articlesActions';
+import { ARTICLES_ACTIONS } from './articlesActions';
 
 export type articleType = {
   title: string;
@@ -26,7 +27,7 @@ const initialState: ArticlesStateType = {
 
 export default function articlesReducer(
   state: ArticlesStateType = initialState,
-  action: articleActionType<articleType[] & string>
+  action: AnyAction
 ): ArticlesStateType {
   switch (action.type) {
     case `${ARTICLES_ACTIONS.FETCH_BY_TAG}/pending`:
