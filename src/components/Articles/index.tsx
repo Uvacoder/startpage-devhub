@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-import { AppDispatch } from '@store';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store';
+import { connect, ConnectedProps } from 'react-redux';
 import { fetchArticles } from './articlesActions';
-import {
-  articleType,
-  selectArticles,
-  selectArticlesFetchStatus
-} from './articlesReducer';
-import { selectInterests } from './interestsReducer';
+import { articleType } from './articlesReducer';
 import { addInterest, removeInterest } from './interestsActions';
 
 import Button from '@components/common/Button';
@@ -20,17 +15,13 @@ import { filterMediumDescription } from '@utils/articles';
 import { ReactComponent as CustomizeIcon } from '@assets/customize.svg';
 import { ReactComponent as MediumLogo } from '@assets/medium-logo.svg';
 
-const ArticlesList = () => {
+const ArticlesList = ({ interests, articles, status }: ArticlesProps) => {
   const [showModal, setShowModal] = useState(false);
-  const articles = useSelector(selectArticles);
-  const interests = useSelector(selectInterests);
-  const status = useSelector(selectArticlesFetchStatus);
-  const dispatch = useDispatch<AppDispatch>();
   const [animationParent] = useAutoAnimate<HTMLUListElement>();
 
   useEffect(() => {
     if (status === 'idle' && interests.length > 0) {
-      dispatch(fetchArticles());
+      fetchArticles();
     }
   }, [interests]);
 
@@ -59,15 +50,28 @@ const ArticlesList = () => {
       <Modal handleClose={() => setShowModal(false)} isOpen={showModal}>
         <InterestsForm
           data={interests}
-          onAdd={(interest) => dispatch(addInterest(interest))}
-          onDelete={(interest) => dispatch(removeInterest(interest))}
+          onAdd={(interest) => addInterest(interest)}
+          onDelete={(interest) => removeInterest(interest)}
         />
       </Modal>
     </div>
   );
 };
 
-export default ArticlesList;
+const connector = connect(
+  (state: RootState) => ({
+    articles: state.articles.data,
+    interests: state.interests,
+    status: state.articles.status
+  }),
+  {
+    fetchArticles,
+    addInterest,
+    removeInterest
+  }
+);
+type ArticlesProps = ConnectedProps<typeof connector>;
+export default connector(ArticlesList);
 
 const Article = ({ link, title, description, category }: articleType) => {
   return (
