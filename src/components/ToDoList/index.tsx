@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-import { AppDispatch } from '@store';
+import { RootState } from '@store';
 import { addTodo, removeTodo } from './todoActions';
-import { selectTodos, todoType } from './todoReducer';
+import { todoType } from './todoReducer';
 
 import Button from '../common/Button';
 import Modal from '../Layout/Modal';
@@ -13,9 +13,7 @@ import ToDoForm from './ToDoForm';
 import { ReactComponent as CheckMarkIcon } from '@assets/check.svg';
 import { ReactComponent as PlusIcon } from '@assets/plus.svg';
 
-const ToDoList = () => {
-  const todos = useSelector(selectTodos);
-  const dispatch = useDispatch<AppDispatch>();
+const ToDoList = ({ todos, addTodo, removeTodo }: ToDoListProps) => {
   const [animationParent] = useAutoAnimate<HTMLUListElement>();
   const [showModal, setShowModal] = useState(false);
 
@@ -28,7 +26,7 @@ const ToDoList = () => {
           <ToDoItem
             key={todo.id}
             todo={todo}
-            handleClick={(id: string) => dispatch(removeTodo(id))}
+            handleClick={(id: string) => removeTodo(id)}
           />
         ))}
         <Button
@@ -42,7 +40,7 @@ const ToDoList = () => {
         <Modal handleClose={() => setShowModal(false)} isOpen={showModal}>
           <ToDoForm
             onSubmit={(todo) => {
-              dispatch(addTodo(todo));
+              addTodo(todo);
               setShowModal(false);
             }}
           />
@@ -52,7 +50,12 @@ const ToDoList = () => {
   );
 };
 
-export default ToDoList;
+const connector = connect((state: RootState) => ({ todos: state.todos }), {
+  addTodo,
+  removeTodo
+});
+type ToDoListProps = ConnectedProps<typeof connector>;
+export default connector(ToDoList);
 
 const ToDoItem = ({
   handleClick,

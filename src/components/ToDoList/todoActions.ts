@@ -3,7 +3,7 @@ export const TODO_ACTIONS = {
   REMOVE: 'todo/removed'
 };
 
-export type TodoActionType<T> = {
+export type todoActionType<T> = {
   type: string;
   payload: T;
 };
