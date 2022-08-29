@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '@store';
+import { connect, ConnectedProps } from 'react-redux';
+import { RootState } from '@store';
 import { addLink, removeLink } from './linksActions';
-import { selectLinks, linkType } from './linksReducer';
+import { linkType } from './linksReducer';
 
 import Button from '../common/Button';
 import Modal from '../Layout/Modal';
@@ -12,9 +12,7 @@ import LinksForm from './LinksForm';
 
 import { ReactComponent as CustomizeIcon } from '@assets/customize.svg';
 
-const Links = () => {
-  const links = useSelector(selectLinks);
-  const dispatch = useDispatch<AppDispatch>();
+const Links = ({ links, addLink, removeLink }: UserLinksProps) => {
   const [animationParent] = useAutoAnimate<HTMLDivElement>();
   const [showModal, setShowModal] = useState(false);
 
@@ -34,17 +32,22 @@ const Links = () => {
       <Modal handleClose={() => setShowModal(false)} isOpen={showModal}>
         <LinksForm
           onSubmit={(link) => {
-            dispatch(addLink(link));
+            addLink(link);
             setShowModal(false);
           }}
-          onRemoveLink={(id) => dispatch(removeLink(id))}
+          onRemoveLink={(id) => removeLink(id)}
         />
       </Modal>
     </div>
   );
 };
 
-export default Links;
+const connector = connect((state: RootState) => ({ links: state.links }), {
+  addLink,
+  removeLink
+});
+type UserLinksProps = ConnectedProps<typeof connector>;
+export default connector(Links);
 
 const LinkItem = ({ link, iconURL, text }: linkType) => {
   return (

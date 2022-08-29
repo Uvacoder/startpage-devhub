@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-import { RootState } from '@store';
+import { AppDispatch, RootState } from '@store';
 import { connect, ConnectedProps } from 'react-redux';
 import { fetchArticles } from './articlesActions';
 import { articleType } from './articlesReducer';
@@ -15,7 +15,12 @@ import { filterMediumDescription } from '@utils/articles';
 import { ReactComponent as CustomizeIcon } from '@assets/customize.svg';
 import { ReactComponent as MediumLogo } from '@assets/medium-logo.svg';
 
-const ArticlesList = ({ interests, articles, status }: ArticlesProps) => {
+const ArticlesList = ({
+  interests,
+  articles,
+  status,
+  fetchArticles
+}: ArticlesProps) => {
   const [showModal, setShowModal] = useState(false);
   const [animationParent] = useAutoAnimate<HTMLUListElement>();
 
@@ -64,11 +69,11 @@ const connector = connect(
     interests: state.interests,
     status: state.articles.status
   }),
-  {
-    fetchArticles,
+  (dispatch: AppDispatch) => ({
+    fetchArticles: () => dispatch(fetchArticles()),
     addInterest,
     removeInterest
-  }
+  })
 );
 type ArticlesProps = ConnectedProps<typeof connector>;
 export default connector(ArticlesList);
